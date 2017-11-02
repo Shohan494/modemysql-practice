@@ -30,3 +30,21 @@ connection.query('INSERT INTO employees SET ?', employee, (err, res) => {
 
   console.log('Last insert ID:', res.insertId);
 });
+
+connection.query(
+  'UPDATE employees SET location = ? Where ID = ?',
+  ['South Africa', 5],
+  (err, result) => {
+    if (err) throw err;
+
+    console.log(`Changed ${result.changedRows} row(s)`);
+  }
+);
+
+connection.query(
+  'DELETE FROM employees WHERE id = ?', [5], (err, result) => {
+    if (err) throw err;
+
+    console.log(`Deleted ${result.affectedRows} row(s)`);
+  }
+);
