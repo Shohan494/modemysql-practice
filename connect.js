@@ -21,6 +21,12 @@ connection.query('SELECT * FROM employees', (err,rows) => {
 
   rows.forEach( (row) => { 
   console.log(`${row.name} is in ${row.location}`); 
-});
+  });
 });
 
+const employee = { name: 'Winnie', location: 'Australia' };
+connection.query('INSERT INTO employees SET ?', employee, (err, res) => {
+  if(err) throw err;
+
+  console.log('Last insert ID:', res.insertId);
+});
